@@ -221,6 +221,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="TableViewUsers" destination="fQh-ve-6hc" id="SwM-mI-YC5"/>
+                        <outlet property="searchBar" destination="790-aU-lYB" id="kJe-gc-xrm"/>
                         <outlet property="searchDisplayController" destination="EMn-89-cwb" id="Itc-7d-vdg"/>
                     </connections>
                 </viewController>

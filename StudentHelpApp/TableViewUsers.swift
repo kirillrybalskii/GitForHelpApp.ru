@@ -12,11 +12,14 @@ import Firebase
 class TableViewUsers: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var TableViewUsers: UITableView!
+    
     //MARK: Properties
     var user : User!
     var assignmentItem = [AssignmentItem]()
     let ref = Database.database().reference(withPath: "assignmentsItems")
     var cellData = [TableViewCellUser]()
+    var isSearching = false
+    var filterData = [AssignmentItem]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
