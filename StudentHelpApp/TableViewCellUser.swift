@@ -11,7 +11,11 @@ import UIKit
 class TableViewCellUser: UITableViewCell {
 
     @IBOutlet weak var ProfileImage: UIImageView!
-    @IBOutlet weak var UserName: UILabel!
-    @IBOutlet weak var Helpers: UILabel!
     
+    @IBOutlet weak var UserName: UILabel!
+    
+    @IBOutlet weak var Subject: UILabel!
+    
+    @IBOutlet weak var TaskInfo: UILabel!
+    @IBOutlet weak var Deadline: UILabel!
     }

@@ -17,98 +17,74 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var LoginTextField: UITextField!
     
     @IBOutlet weak var PasswordTextField: UITextField!
+    
+    var newUser: User!
+    
+    weak var RegisterNewUserReference : RegisterViewController?
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        DispatchQueue.main.async {
+
             let attributedString = NSAttributedString(string: "Forgot your password?", attributes: [NSForegroundColorAttributeName: UIColor.white, NSUnderlineStyleAttributeName:1])
             self.passwordButton.setAttributedTitle(attributedString, for: .normal)}
-        //new user signed in
-        DispatchQueue.global(qos: .userInitiated).async {Auth.auth().addStateDidChangeListener() { auth, user in
-            if user != nil {
-                self.performSegue(withIdentifier: "LoginToHome", sender: nil)
-                self.LoginTextField.text = nil
-                self.PasswordTextField.text = nil
-            }
-            }
+//        //new user signed in
+//        DispatchQueue.global(qos: .userInitiated).async {Auth.auth().addStateDidChangeListener() { auth, user in
+//            if user != nil {
+//                self.performSegue(withIdentifier: "LoginToHome", sender: nil)
+//                self.LoginTextField.text = nil
+//                self.PasswordTextField.text = nil
+//            }
+//            }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "RegistrationSegue"
+        {
+             RegisterNewUserReference = segue.destination as? RegisterViewController
+             RegisterNewUserReference?.delegate = self
         }
-
-        //let ref = DataBase.database().reference()
-       // ref.child("UserId/UserName").setValue("Mike")
-       // ref.childByAutoId().setValue(["UserName":"Mike", "Faculty": 2])
-    }
-
-        @IBAction func LoginButtonPressed(_ sender: UIButton)
-        {
-        guard let email = LoginTextField.text,
-            let password = PasswordTextField.text
-            else
-        {
-            return
-            }
-            Auth.auth().signIn(withEmail: email, password: password)
-            { (user, error) in
-                if let error = error, user == nil {
-                    let alert = UIAlertController(title: "Login in failed", message: error.localizedDescription, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default))
-                    self.present(alert, animated: true, completion: nil)
-                }
-            }
+//       if segue.identifier == "LoginToHome"{
+//       let tabBarController = segue.destination as! UITabBarController
+//        let naviController = tabBarController.viewControllers?.first as! UINavigationController
+//        let searchVC = naviController.viewControllers.first as! TableViewUsers
+//           searchVC.user = self.newUser
+//        
+//        }
     }
     
-    @IBAction func RegisterButtonPressed(_ sender: AnyObject) {
-        let alert = UIAlertController(title: "Register",
-                                      message: "Register",
-                                      preferredStyle: .alert)
-        let saveAction = UIAlertAction(title: "Save", style: .default)
-        { _ in
+    @IBAction func LoginButtonPressed(_ sender: UIButton)
+        {
+            if self.LoginTextField.text == "" || self.PasswordTextField.text == "" {
+              let alertController = UIAlertController(title: "Error", message: "Please enter an email and password.", preferredStyle: .alert)
+       
+       let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+       alertController.addAction(defaultAction)
+       
+       self.present(alertController, animated: true, completion: nil)
+       
+   } else {
+       
+       Auth.auth().signIn(withEmail: self.LoginTextField.text!, password: self.PasswordTextField.text!) { (user, error) in
+           
+           if error == nil, user != nil {
             
-            let emailField = alert.textFields![0]
-            let passwordField = alert.textFields![1]
-           // let facultyNameField = alert.textFields![2]
-            //let yearOfStudyField = alert.textFields![3]
-            
-            Auth.auth().createUser(withEmail: emailField.text!, password: passwordField.text!)
-            { (user, error) in
-                if error == nil
-                {
-                    Auth.auth().signIn(withEmail: self.LoginTextField.text!,
-                                       password: self.PasswordTextField.text!)
+//               let uuid = UUID().uuidString
+//            let user = User(uid: uuid, email: self.LoginTextField.text!)
+//               self.newUser = user
+               self.performSegue(withIdentifier: "LoginToHome", sender: nil)
+               self.LoginTextField.text = nil
+               self.PasswordTextField.text = nil   
+               print("You have successfully logged in")
+           } else {
+               let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
+               
+               let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+               alertController.addAction(defaultAction)
+               
+               self.present(alertController, animated: true, completion: nil)
+        }
                 }
             }
-            //serializing
-            let createdUser = User(uid: passwordField.text!, email: emailField.text!)
-            let filePath = try! FileSave.buildPath(path: "Userdata", inDirectory: FileManager.SearchPathDirectory.cachesDirectory, subdirectory: "archive")
-            NSKeyedArchiver.archiveRootObject(createdUser, toFile: filePath)
-
-        }
-        
-        let cancelAction = UIAlertAction(title: "Cancel",
-                                         style: .cancel)
-        
-        alert.addTextField { textEmail in
-            textEmail.placeholder = "Enter your email"
-        }
-        
-        alert.addTextField { textPassword in
-            textPassword.isSecureTextEntry = true
-            textPassword.placeholder = "Enter your password"
-        }
-        alert.addTextField { textEmail in
-            textEmail.placeholder = "Enter your faculty name"
-        }
-        alert.addTextField { textEmail in
-            textEmail.placeholder = "Enter your year of study"
-        }
-        
-        alert.addAction(saveAction)
-        alert.addAction(cancelAction)
-        
-        present(alert, animated: true, completion: nil)
-        
     }
-   
 }
 extension LoginViewController: UITextFieldDelegate {
     
@@ -122,7 +98,12 @@ extension LoginViewController: UITextFieldDelegate {
         return true
     }
 }
-
+extension LoginViewController: RegisterDelegate {
+    func registeredNewUser(login: String, password: String) {
+        self.LoginTextField.text = login
+        self.PasswordTextField.text = password
+    }
+}
 
 
 

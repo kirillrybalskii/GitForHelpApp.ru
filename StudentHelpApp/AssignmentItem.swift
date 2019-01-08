@@ -31,13 +31,12 @@ struct AssignmentItem {
     init?(snapshot: DataSnapshot) {
         guard
             let value = snapshot.value as? [String: AnyObject],
-            let subject = value["subject"] as? String,
-            let whatToDo = value["WhatToDo"] as? String,
             let addedByUser = value["addedByUser"] as? String,
+            let completed = value["completed"] as? Bool,
             let deadline = value["deadline"] as? String,
-            let completed = value["completed"] as? Bool else {
-                return nil
-        }
+            let subject = value["subject"] as? String,
+            let whatToDo = value["whatToDo"] as? String
+        else {return nil}
         
         self.ref = snapshot.ref
         self.key = snapshot.key
@@ -49,12 +48,12 @@ struct AssignmentItem {
     }
     
     func toAnyObject() -> Any {
-        return [
+        return [ "assignment" :[
             "whatToDo": whatToDo,
             "subject": subject,
             "deadline": deadline,
             "addedByUser": addedByUser,
             "completed": completed
-        ]
+        ]]
     }
 }

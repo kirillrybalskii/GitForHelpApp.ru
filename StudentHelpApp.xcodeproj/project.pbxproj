@@ -8,9 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		C4BB05B13F2FA1405BD943EB /* Pods_StudentHelpApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69075B4575EEC7C189B7A049 /* Pods_StudentHelpApp.framework */; };
+		CE86F5C721DA47F000F79D1B /* LocalUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE86F5C621DA47F000F79D1B /* LocalUser.swift */; };
+		CE86F5CD21DA835F00F79D1B /* JsonWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE86F5CC21DA835F00F79D1B /* JsonWork.swift */; };
+		CE86F5D221E397ED00F79D1B /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE86F5D021E397ED00F79D1B /* CustomTableViewCell.swift */; };
+		CE86F5D321E397ED00F79D1B /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE86F5D121E397ED00F79D1B /* CustomTableViewCell.xib */; };
+		CE86F5D521E4E02C00F79D1B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE86F5D421E4E02C00F79D1B /* SettingsViewController.swift */; };
 		CE95EFD021C95E810030A21B /* FileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95EFCF21C95E810030A21B /* FileHelper.swift */; };
 		CE95EFD221C95EFA0030A21B /* FileDirectory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95EFD121C95EFA0030A21B /* FileDirectory.swift */; };
 		CE95EFD421C95FAA0030A21B /* FileSave.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95EFD321C95FAA0030A21B /* FileSave.swift */; };
+		CE95EFD821D525BD0030A21B /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95EFD721D525BD0030A21B /* RegisterViewController.swift */; };
+		CE95EFDD21D695A70030A21B /* PopUpAssignmentFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95EFDB21D695A70030A21B /* PopUpAssignmentFormViewController.swift */; };
+		CE95EFE021D93FE40030A21B /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95EFDF21D93FE40030A21B /* UserInfo.swift */; };
+		CE95EFE221D950990030A21B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95EFE121D950990030A21B /* ProfileViewController.swift */; };
 		CEF0A11221B3F92400E0AADC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF0A11121B3F92400E0AADC /* AppDelegate.swift */; };
 		CEF0A11421B3F92400E0AADC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF0A11321B3F92400E0AADC /* LoginViewController.swift */; };
 		CEF0A11721B3F92400E0AADC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEF0A11521B3F92400E0AADC /* Main.storyboard */; };
@@ -22,7 +31,6 @@
 		CEF0A13B21B8010300E0AADC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEF0A13A21B8010300E0AADC /* GoogleService-Info.plist */; };
 		CEF0A15B21B9490400E0AADC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF0A15A21B9490400E0AADC /* User.swift */; };
 		CEF0A16221B9602600E0AADC /* AssignmentItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF0A16121B9602600E0AADC /* AssignmentItem.swift */; };
-		CEF0A16421BBEE5900E0AADC /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF0A16321BBEE5900E0AADC /* ProfileViewController.swift */; };
 		CEF0A16621C8392E00E0AADC /* ResponsesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF0A16521C8392E00E0AADC /* ResponsesViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -30,9 +38,18 @@
 		1E6485A26DA7CF96813805E0 /* Pods-StudentHelpApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudentHelpApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-StudentHelpApp/Pods-StudentHelpApp.release.xcconfig"; sourceTree = "<group>"; };
 		4825B262354E81B0D4E8B193 /* Pods-StudentHelpApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudentHelpApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StudentHelpApp/Pods-StudentHelpApp.debug.xcconfig"; sourceTree = "<group>"; };
 		69075B4575EEC7C189B7A049 /* Pods_StudentHelpApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StudentHelpApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE86F5C621DA47F000F79D1B /* LocalUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalUser.swift; sourceTree = "<group>"; };
+		CE86F5CC21DA835F00F79D1B /* JsonWork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonWork.swift; sourceTree = "<group>"; };
+		CE86F5D021E397ED00F79D1B /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		CE86F5D121E397ED00F79D1B /* CustomTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
+		CE86F5D421E4E02C00F79D1B /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		CE95EFCF21C95E810030A21B /* FileHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileHelper.swift; sourceTree = "<group>"; };
 		CE95EFD121C95EFA0030A21B /* FileDirectory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileDirectory.swift; sourceTree = "<group>"; };
 		CE95EFD321C95FAA0030A21B /* FileSave.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileSave.swift; sourceTree = "<group>"; };
+		CE95EFD721D525BD0030A21B /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		CE95EFDB21D695A70030A21B /* PopUpAssignmentFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpAssignmentFormViewController.swift; sourceTree = "<group>"; };
+		CE95EFDF21D93FE40030A21B /* UserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		CE95EFE121D950990030A21B /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		CEF0A10E21B3F92400E0AADC /* StudentHelpApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudentHelpApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEF0A11121B3F92400E0AADC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEF0A11321B3F92400E0AADC /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -47,7 +64,6 @@
 		CEF0A15A21B9490400E0AADC /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		CEF0A15C21B94D3600E0AADC /* StudentHelpApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StudentHelpApp.entitlements; sourceTree = "<group>"; };
 		CEF0A16121B9602600E0AADC /* AssignmentItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentItem.swift; sourceTree = "<group>"; };
-		CEF0A16321BBEE5900E0AADC /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		CEF0A16521C8392E00E0AADC /* ResponsesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponsesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -88,6 +104,7 @@
 				CE95EFCF21C95E810030A21B /* FileHelper.swift */,
 				CE95EFD121C95EFA0030A21B /* FileDirectory.swift */,
 				CE95EFD321C95FAA0030A21B /* FileSave.swift */,
+				CE86F5CC21DA835F00F79D1B /* JsonWork.swift */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -129,6 +146,7 @@
 			children = (
 				CEF0A12721B5A09100E0AADC /* TableViewUsers.swift */,
 				CEF0A12F21B5B35500E0AADC /* TableViewCellUser.swift */,
+				CE95EFDB21D695A70030A21B /* PopUpAssignmentFormViewController.swift */,
 			);
 			name = Search;
 			sourceTree = "<group>";
@@ -138,6 +156,7 @@
 			children = (
 				CEF0A12321B55EAD00E0AADC /* LoginTextField.swift */,
 				CEF0A11321B3F92400E0AADC /* LoginViewController.swift */,
+				CE95EFD721D525BD0030A21B /* RegisterViewController.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -156,8 +175,11 @@
 		CEF0A15F21B954EC00E0AADC /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				CEF0A16321BBEE5900E0AADC /* ProfileViewController.swift */,
 				CEF0A16521C8392E00E0AADC /* ResponsesViewController.swift */,
+				CE95EFE121D950990030A21B /* ProfileViewController.swift */,
+				CE86F5D021E397ED00F79D1B /* CustomTableViewCell.swift */,
+				CE86F5D121E397ED00F79D1B /* CustomTableViewCell.xib */,
+				CE86F5D421E4E02C00F79D1B /* SettingsViewController.swift */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -167,6 +189,8 @@
 			children = (
 				CEF0A15A21B9490400E0AADC /* User.swift */,
 				CEF0A16121B9602600E0AADC /* AssignmentItem.swift */,
+				CE95EFDF21D93FE40030A21B /* UserInfo.swift */,
+				CE86F5C621DA47F000F79D1B /* LocalUser.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -241,6 +265,7 @@
 				CEF0A11C21B3F92400E0AADC /* LaunchScreen.storyboard in Resources */,
 				CEF0A13B21B8010300E0AADC /* GoogleService-Info.plist in Resources */,
 				CEF0A11921B3F92400E0AADC /* Assets.xcassets in Resources */,
+				CE86F5D321E397ED00F79D1B /* CustomTableViewCell.xib in Resources */,
 				CEF0A11721B3F92400E0AADC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -297,17 +322,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE86F5D221E397ED00F79D1B /* CustomTableViewCell.swift in Sources */,
+				CE86F5CD21DA835F00F79D1B /* JsonWork.swift in Sources */,
 				CEF0A13021B5B35500E0AADC /* TableViewCellUser.swift in Sources */,
 				CEF0A12821B5A09100E0AADC /* TableViewUsers.swift in Sources */,
 				CEF0A15B21B9490400E0AADC /* User.swift in Sources */,
+				CE86F5D521E4E02C00F79D1B /* SettingsViewController.swift in Sources */,
 				CEF0A11421B3F92400E0AADC /* LoginViewController.swift in Sources */,
+				CE86F5C721DA47F000F79D1B /* LocalUser.swift in Sources */,
 				CE95EFD421C95FAA0030A21B /* FileSave.swift in Sources */,
 				CEF0A16621C8392E00E0AADC /* ResponsesViewController.swift in Sources */,
 				CEF0A11221B3F92400E0AADC /* AppDelegate.swift in Sources */,
 				CE95EFD221C95EFA0030A21B /* FileDirectory.swift in Sources */,
 				CEF0A12421B55EAD00E0AADC /* LoginTextField.swift in Sources */,
-				CEF0A16421BBEE5900E0AADC /* ProfileViewController.swift in Sources */,
+				CE95EFD821D525BD0030A21B /* RegisterViewController.swift in Sources */,
+				CE95EFDD21D695A70030A21B /* PopUpAssignmentFormViewController.swift in Sources */,
 				CEF0A16221B9602600E0AADC /* AssignmentItem.swift in Sources */,
+				CE95EFE221D950990030A21B /* ProfileViewController.swift in Sources */,
+				CE95EFE021D93FE40030A21B /* UserInfo.swift in Sources */,
 				CE95EFD021C95E810030A21B /* FileHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

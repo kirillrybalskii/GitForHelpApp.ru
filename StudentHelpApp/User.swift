@@ -13,7 +13,7 @@ class User: NSObject, NSCoding
 {
     let uid: String
     let email: String
-    
+
     init(authData: Firebase.User) {
         uid = authData.uid
         email = authData.email!
