@@ -12,6 +12,7 @@ class JsonWork {
     static var userData: UserInfo?
     static var assignmentsFromJson: [AssignmentItem] = []
     
+    
    public static func JsonWrite(userinfo : UserInfo) {
     guard let documentDirectoryUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
     let fileUrl = documentDirectoryUrl.appendingPathComponent("Profile.json")
@@ -57,7 +58,7 @@ class JsonWork {
             do {
                 let data = try JSONSerialization.data(withJSONObject: assignmentJson, options: [])
                 try data.write(to: fileUrl, options: [])
-                print("data serialized \(data) for url \(fileUrl)")
+                print("data serialized \(assignmentJson) for url \(fileUrl)")
             } catch {
                 print(error)
             }
@@ -69,7 +70,10 @@ class JsonWork {
         let fileUrl = documentsDirectoryUrl.appendingPathComponent("Assignments.json")
         do {
             let data = try? Data(contentsOf: fileUrl, options: [])
+            guard data != nil
+                else {return}
             let json = try JSONSerialization.jsonObject(with: data!, options: [])
+            
             guard let dictionary = json as? [String: String],
                 let whatToDo = dictionary["whatToDo"],
                 let subject = dictionary["subject"],
@@ -79,6 +83,7 @@ class JsonWork {
                 else {return}
             let newAssignment = AssignmentItem(whatToDo: whatToDo, subject: subject, deadline: deadline, addedByUser: addedByUser, completed: completed.stringToBool())
             self.assignmentsFromJson.append(newAssignment)
+                    print("assignments\(dictionary as AnyObject)")
         } catch {print(error)
         }
 }

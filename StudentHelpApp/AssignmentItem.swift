@@ -48,12 +48,12 @@ struct AssignmentItem {
     }
     
     func toAnyObject() -> Any {
-        return [ "assignment" :[
+        return [
             "whatToDo": whatToDo,
             "subject": subject,
             "deadline": deadline,
             "addedByUser": addedByUser,
             "completed": completed
-        ]]
+        ]
     }
 }

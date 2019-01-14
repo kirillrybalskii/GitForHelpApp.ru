@@ -11,7 +11,6 @@ import Firebase
 class PopUpAssignmentFormViewController: UIViewController {
 
     @IBOutlet weak var viewPopUp: UIView!
-    let ref = Database.database().reference(withPath: "assignmentsItems")
     var user: User!
     private var datePicker: UIDatePicker?
     var delegate: ProfileDelegate?
@@ -61,11 +60,16 @@ class PopUpAssignmentFormViewController: UIViewController {
 
     
     @IBAction func OkButtonPressed(_ sender: UIButton) {
-        let assignment = AssignmentItem(whatToDo: whatToDoTextField.text!, subject: subjectTextField.text!, deadline: deadlineTextField.text!, addedByUser: self.user.email, completed: false)
-        
-        let assignmentItemRef = self.ref.child(whatToDoTextField.text!)
-        assignmentItemRef.setValue(assignment.toAnyObject())
+       let userName = Auth.auth().currentUser?.displayName
+        let assignment = AssignmentItem(whatToDo: whatToDoTextField.text!, subject: subjectTextField.text!, deadline: deadlineTextField.text!, addedByUser: userName!, completed: false)
+        //JsonWork.JsonWriteAssignments(assignment: assignment)
+        //new assignment to Firebase
+        let assignmentId = Database.database().reference().child("assignments").childByAutoId().key
+        let refAssignments = Database.database().reference(withPath: "assignments").child(assignmentId!)
+        let refUserAssignments = Database.database().reference(withPath: "usersInfo").child(self.user.userId).child("assignments")
+        refAssignments.setValue(assignment.toAnyObject())
         delegate?.DidCreateNewAssignment(assignment: assignment)
+        refUserAssignments.setValue(assignment.toAnyObject())
         self.removeAnimate()
     }
     

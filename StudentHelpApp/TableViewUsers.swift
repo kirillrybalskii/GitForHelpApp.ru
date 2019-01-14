@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SwiftKeychainWrapper
 
 enum selectedScope:Int {
     case subject = 0
@@ -23,7 +24,7 @@ class TableViewUsers: UITableViewController, UISearchBarDelegate {
     //MARK: Properties
     var user : User!
     var assignmentItem: [AssignmentItem] = []
-    let ref = Database.database().reference(withPath: "assignmentsItems")
+    let ref = Database.database().reference(withPath: "assignments")
     let usersRef = Database.database().reference(withPath: "online")
     var cellData = [TableViewCellUser]()
     

@@ -9,16 +9,22 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import SwiftKeychainWrapper
+import FirebaseStorage
 
 protocol RegisterDelegate {
     func registeredNewUser(login: String, password: String)
 }
 
-class RegisterViewController: UIViewController {
+class RegisterViewController: UIViewController, UINavigationControllerDelegate {
     
     var delegate: RegisterDelegate?
     let refUserInfo = Database.database().reference(withPath: "usersInfo")
-
+    let refUsers = Database.database().reference(withPath: "users")
+    var imagePicker: UIImagePickerController!
+    var imageSelected = false
+    var userId: String!
+    
     @IBOutlet weak var loginTextField: UITextField!
     @IBOutlet weak var nameTextField: UITextField!    
     @IBOutlet weak var universityNameTextField: UITextField!
@@ -26,6 +32,8 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var yearOfStudyTextField: UITextField!
     @IBOutlet weak var createPasswordTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
+    
+    @IBOutlet weak var userImagePicker: UIImageView!
     
     let yearsOfStudySelection = ["1(Bachelor)",
                                  "2(Bachelor)",
@@ -38,8 +46,22 @@ class RegisterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        createImagePicker()
         createPicker()
         createToolBar()
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        
+        if let _ = KeychainWrapper.standard.string(forKey: "uid") {
+            
+            performSegue(withIdentifier: "toMessage", sender: nil)
+        }
+    }
+    
+    func createImagePicker() {
+        imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
     }
     
     func createPicker() {
@@ -63,8 +85,17 @@ class RegisterViewController: UIViewController {
         view.endEditing(true)
     }
     
+    @IBAction func backPressed(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func imagePickerPressed(_ sender: UIButton) {
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
     
     @IBAction func registerButtonPressed(_ sender: UIButton) {
+        
    if loginTextField.text == "", nameTextField.text == "", yearOfStudyTextField.text == "", createPasswordTextField.text == "", confirmPasswordTextField.text == "" {
        let alertController = UIAlertController(title: "Error", message: "Please fill in all sections", preferredStyle: .alert)
        
@@ -85,24 +116,19 @@ class RegisterViewController: UIViewController {
            
            if error == nil {
                self.delegate?.registeredNewUser(login: self.loginTextField.text!, password: self.createPasswordTextField.text!)
-            //User to FireBase
-            let userInfo = UserInfo(name: self.nameTextField.text!, universityName: self.universityNameTextField.text!, facultyName: self.facultyNameTextField.text!, yearOfStudy: self.yearOfStudyTextField.text!)
-            let userInfoRef = self.refUserInfo.child(self.nameTextField.text!)
-            userInfoRef.setValue(userInfo.toAnyObject())
-            
-            //Local user properties
-            LocalUser.Email = self.loginTextField.text!
-            LocalUser.Name = self.nameTextField.text!
-            LocalUser.UniversityName = self.universityNameTextField.text!
-            LocalUser.YearOfStudy = self.yearOfStudyTextField.text!
-            LocalUser.FacultyName = self.facultyNameTextField.text!
-            
-            //Json serialization
-            JsonWork.JsonWrite(userinfo: userInfo)
-            print("You have successfully signed up")
-               
-               self.dismiss(animated: true, completion: nil)
-               
+            //User profile info to DB
+            let additionalInfoRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+            additionalInfoRequest?.displayName = self.nameTextField.text!
+            additionalInfoRequest?.commitChanges { error in
+                if error == nil {
+                    print("username saved to Auth")
+                    
+                 //new user to Firebase(to users and userId/userData)
+                self.userId = user!.user.uid
+                    self.uploadImg()
+                }
+            }
+            self.dismiss(animated: true, completion: nil)
                
            } else {
                let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
@@ -115,6 +141,57 @@ class RegisterViewController: UIViewController {
        }
    }
     
+    }
+    func uploadImg() {
+        
+        guard let img = userImagePicker.image, imageSelected == true else {
+            
+            print("image needs to be selected")
+            
+            return
+        }
+        
+        if let imgData = UIImageJPEGRepresentation(img, 0.2) {
+            
+            let imgUid = NSUUID().uuidString
+            
+            let metadata = StorageMetadata()
+            
+            metadata.contentType = "image/jpeg"
+            
+         Storage.storage().reference().child(imgUid).putData(imgData, metadata: metadata) { (metadata, error) in
+                
+                if error != nil {
+                    
+                    print("did not upload img")
+                } else {
+                    
+                    print("uploaded")
+                    
+                    metadata?.storageReference?.downloadURL(completion: { (url, error) in
+                        if let error = error {
+                            print(error.localizedDescription)
+                            return
+                        }
+                        self.userToFirebase(userImageUrl: url!.absoluteString)
+                    })
+                   
+                }
+            }
+        }
+    }
+    func userToFirebase(userImageUrl: String) {
+        let userInfo = UserInfo(name: self.nameTextField.text!, universityName: self.universityNameTextField.text!, facultyName: self.facultyNameTextField.text!, yearOfStudy: self.yearOfStudyTextField.text!, userImage: userImageUrl)
+        KeychainWrapper.standard.set(self.userId!, forKey: "uid")
+        let userProfileInfo = self.refUserInfo.child(self.userId!).child("userData")
+        userProfileInfo.setValue(userInfo.toAnyObject())
+        let systemUsers = self.refUsers.child(self.userId!)
+        systemUsers.setValue(userInfo.toAnyObject())
+        print("user saved to Firebase")
+        //Json serialization
+        JsonWork.JsonWrite(userinfo: userInfo)
+        print("You have successfully signed up")
+
     }
 }
 
@@ -135,4 +212,26 @@ class RegisterViewController: UIViewController {
         yearOfStudyTextField.text = selectedYear
     }
     
+}
+
+// MARK: ImagePickerDelegate
+extension RegisterViewController: UIImagePickerControllerDelegate {
+    
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
+            
+            userImagePicker.image = image
+            
+            imageSelected = true
+            
+        } else {
+            
+            print("image wasnt selected")
+        }
+        
+        imagePicker.dismiss(animated: true, completion: nil)
+    }
+
 }

@@ -8,11 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		C4BB05B13F2FA1405BD943EB /* Pods_StudentHelpApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69075B4575EEC7C189B7A049 /* Pods_StudentHelpApp.framework */; };
-		CE86F5C721DA47F000F79D1B /* LocalUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE86F5C621DA47F000F79D1B /* LocalUser.swift */; };
 		CE86F5CD21DA835F00F79D1B /* JsonWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE86F5CC21DA835F00F79D1B /* JsonWork.swift */; };
 		CE86F5D221E397ED00F79D1B /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE86F5D021E397ED00F79D1B /* CustomTableViewCell.swift */; };
 		CE86F5D321E397ED00F79D1B /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE86F5D121E397ED00F79D1B /* CustomTableViewCell.xib */; };
 		CE86F5D521E4E02C00F79D1B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE86F5D421E4E02C00F79D1B /* SettingsViewController.swift */; };
+		CE9362CB21E88C63008C6B2E /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9362CA21E88C63008C6B2E /* Search.swift */; };
+		CE9362CD21E90DAF008C6B2E /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9362CC21E90DAF008C6B2E /* SearchTableViewCell.swift */; };
 		CE95EFD021C95E810030A21B /* FileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95EFCF21C95E810030A21B /* FileHelper.swift */; };
 		CE95EFD221C95EFA0030A21B /* FileDirectory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95EFD121C95EFA0030A21B /* FileDirectory.swift */; };
 		CE95EFD421C95FAA0030A21B /* FileSave.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95EFD321C95FAA0030A21B /* FileSave.swift */; };
@@ -20,6 +21,13 @@
 		CE95EFDD21D695A70030A21B /* PopUpAssignmentFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95EFDB21D695A70030A21B /* PopUpAssignmentFormViewController.swift */; };
 		CE95EFE021D93FE40030A21B /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95EFDF21D93FE40030A21B /* UserInfo.swift */; };
 		CE95EFE221D950990030A21B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95EFE121D950990030A21B /* ProfileViewController.swift */; };
+		CEE3F14021E6774B00AC07AA /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE3F13F21E6774B00AC07AA /* ChatViewController.swift */; };
+		CEE3F14221E67B3400AC07AA /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE3F14121E67B3400AC07AA /* MessageTableViewCell.swift */; };
+		CEE3F14421E67C5E00AC07AA /* MessageDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE3F14321E67C5E00AC07AA /* MessageDetail.swift */; };
+		CEE3F14621E7796400AC07AA /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE3F14521E7796400AC07AA /* MessageViewController.swift */; };
+		CEE3F14821E77D6B00AC07AA /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE3F14721E77D6B00AC07AA /* Message.swift */; };
+		CEE3F14A21E7921E00AC07AA /* ChatMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE3F14921E7921E00AC07AA /* ChatMessageTableViewCell.swift */; };
+		CEE3F14E21E8820000AC07AA /* SearchToSendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE3F14D21E8820000AC07AA /* SearchToSendViewController.swift */; };
 		CEF0A11221B3F92400E0AADC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF0A11121B3F92400E0AADC /* AppDelegate.swift */; };
 		CEF0A11421B3F92400E0AADC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF0A11321B3F92400E0AADC /* LoginViewController.swift */; };
 		CEF0A11721B3F92400E0AADC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEF0A11521B3F92400E0AADC /* Main.storyboard */; };
@@ -38,11 +46,12 @@
 		1E6485A26DA7CF96813805E0 /* Pods-StudentHelpApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudentHelpApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-StudentHelpApp/Pods-StudentHelpApp.release.xcconfig"; sourceTree = "<group>"; };
 		4825B262354E81B0D4E8B193 /* Pods-StudentHelpApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudentHelpApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StudentHelpApp/Pods-StudentHelpApp.debug.xcconfig"; sourceTree = "<group>"; };
 		69075B4575EEC7C189B7A049 /* Pods_StudentHelpApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StudentHelpApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CE86F5C621DA47F000F79D1B /* LocalUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalUser.swift; sourceTree = "<group>"; };
 		CE86F5CC21DA835F00F79D1B /* JsonWork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonWork.swift; sourceTree = "<group>"; };
 		CE86F5D021E397ED00F79D1B /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		CE86F5D121E397ED00F79D1B /* CustomTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
 		CE86F5D421E4E02C00F79D1B /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		CE9362CA21E88C63008C6B2E /* Search.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
+		CE9362CC21E90DAF008C6B2E /* SearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		CE95EFCF21C95E810030A21B /* FileHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileHelper.swift; sourceTree = "<group>"; };
 		CE95EFD121C95EFA0030A21B /* FileDirectory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileDirectory.swift; sourceTree = "<group>"; };
 		CE95EFD321C95FAA0030A21B /* FileSave.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileSave.swift; sourceTree = "<group>"; };
@@ -50,6 +59,13 @@
 		CE95EFDB21D695A70030A21B /* PopUpAssignmentFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpAssignmentFormViewController.swift; sourceTree = "<group>"; };
 		CE95EFDF21D93FE40030A21B /* UserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		CE95EFE121D950990030A21B /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		CEE3F13F21E6774B00AC07AA /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		CEE3F14121E67B3400AC07AA /* MessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
+		CEE3F14321E67C5E00AC07AA /* MessageDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageDetail.swift; sourceTree = "<group>"; };
+		CEE3F14521E7796400AC07AA /* MessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
+		CEE3F14721E77D6B00AC07AA /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		CEE3F14921E7921E00AC07AA /* ChatMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageTableViewCell.swift; sourceTree = "<group>"; };
+		CEE3F14D21E8820000AC07AA /* SearchToSendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchToSendViewController.swift; sourceTree = "<group>"; };
 		CEF0A10E21B3F92400E0AADC /* StudentHelpApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudentHelpApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEF0A11121B3F92400E0AADC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEF0A11321B3F92400E0AADC /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -109,6 +125,36 @@
 			name = Sources;
 			sourceTree = "<group>";
 		};
+		CEE3F13E21E6772C00AC07AA /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				CEE3F14B21E7C16900AC07AA /* View */,
+				CEE3F13F21E6774B00AC07AA /* ChatViewController.swift */,
+				CEE3F14521E7796400AC07AA /* MessageViewController.swift */,
+				CEE3F14D21E8820000AC07AA /* SearchToSendViewController.swift */,
+			);
+			name = Chat;
+			sourceTree = "<group>";
+		};
+		CEE3F14B21E7C16900AC07AA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CEE3F14121E67B3400AC07AA /* MessageTableViewCell.swift */,
+				CEE3F14921E7921E00AC07AA /* ChatMessageTableViewCell.swift */,
+				CE9362CC21E90DAF008C6B2E /* SearchTableViewCell.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		CEE3F14C21E7C19100AC07AA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CE86F5D021E397ED00F79D1B /* CustomTableViewCell.swift */,
+				CE86F5D121E397ED00F79D1B /* CustomTableViewCell.xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		CEF0A10521B3F92400E0AADC = {
 			isa = PBXGroup;
 			children = (
@@ -131,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				CEF0A11521B3F92400E0AADC /* Main.storyboard */,
+				CEE3F13E21E6772C00AC07AA /* Chat */,
 				CEF0A16021B9551700E0AADC /* Models */,
 				CEF0A15F21B954EC00E0AADC /* Profile */,
 				CEF0A13221B5B76B00E0AADC /* Login */,
@@ -154,9 +201,9 @@
 		CEF0A13221B5B76B00E0AADC /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				CEF0A12321B55EAD00E0AADC /* LoginTextField.swift */,
 				CEF0A11321B3F92400E0AADC /* LoginViewController.swift */,
 				CE95EFD721D525BD0030A21B /* RegisterViewController.swift */,
+				CEF0A12321B55EAD00E0AADC /* LoginTextField.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -175,10 +222,9 @@
 		CEF0A15F21B954EC00E0AADC /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				CEE3F14C21E7C19100AC07AA /* View */,
 				CEF0A16521C8392E00E0AADC /* ResponsesViewController.swift */,
 				CE95EFE121D950990030A21B /* ProfileViewController.swift */,
-				CE86F5D021E397ED00F79D1B /* CustomTableViewCell.swift */,
-				CE86F5D121E397ED00F79D1B /* CustomTableViewCell.xib */,
 				CE86F5D421E4E02C00F79D1B /* SettingsViewController.swift */,
 			);
 			name = Profile;
@@ -190,7 +236,9 @@
 				CEF0A15A21B9490400E0AADC /* User.swift */,
 				CEF0A16121B9602600E0AADC /* AssignmentItem.swift */,
 				CE95EFDF21D93FE40030A21B /* UserInfo.swift */,
-				CE86F5C621DA47F000F79D1B /* LocalUser.swift */,
+				CEE3F14321E67C5E00AC07AA /* MessageDetail.swift */,
+				CEE3F14721E77D6B00AC07AA /* Message.swift */,
+				CE9362CA21E88C63008C6B2E /* Search.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -300,6 +348,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-StudentHelpApp/Pods-StudentHelpApp-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftKeychainWrapper/SwiftKeychainWrapper.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -307,6 +356,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftKeychainWrapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -329,17 +379,25 @@
 				CEF0A15B21B9490400E0AADC /* User.swift in Sources */,
 				CE86F5D521E4E02C00F79D1B /* SettingsViewController.swift in Sources */,
 				CEF0A11421B3F92400E0AADC /* LoginViewController.swift in Sources */,
-				CE86F5C721DA47F000F79D1B /* LocalUser.swift in Sources */,
 				CE95EFD421C95FAA0030A21B /* FileSave.swift in Sources */,
+				CE9362CB21E88C63008C6B2E /* Search.swift in Sources */,
 				CEF0A16621C8392E00E0AADC /* ResponsesViewController.swift in Sources */,
 				CEF0A11221B3F92400E0AADC /* AppDelegate.swift in Sources */,
 				CE95EFD221C95EFA0030A21B /* FileDirectory.swift in Sources */,
+				CE9362CD21E90DAF008C6B2E /* SearchTableViewCell.swift in Sources */,
+				CEE3F14E21E8820000AC07AA /* SearchToSendViewController.swift in Sources */,
 				CEF0A12421B55EAD00E0AADC /* LoginTextField.swift in Sources */,
 				CE95EFD821D525BD0030A21B /* RegisterViewController.swift in Sources */,
+				CEE3F14221E67B3400AC07AA /* MessageTableViewCell.swift in Sources */,
 				CE95EFDD21D695A70030A21B /* PopUpAssignmentFormViewController.swift in Sources */,
+				CEE3F14621E7796400AC07AA /* MessageViewController.swift in Sources */,
 				CEF0A16221B9602600E0AADC /* AssignmentItem.swift in Sources */,
 				CE95EFE221D950990030A21B /* ProfileViewController.swift in Sources */,
+				CEE3F14A21E7921E00AC07AA /* ChatMessageTableViewCell.swift in Sources */,
 				CE95EFE021D93FE40030A21B /* UserInfo.swift in Sources */,
+				CEE3F14021E6774B00AC07AA /* ChatViewController.swift in Sources */,
+				CEE3F14821E77D6B00AC07AA /* Message.swift in Sources */,
+				CEE3F14421E67C5E00AC07AA /* MessageDetail.swift in Sources */,
 				CE95EFD021C95E810030A21B /* FileHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

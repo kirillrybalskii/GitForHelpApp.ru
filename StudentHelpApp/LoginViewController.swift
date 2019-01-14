@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import SwiftKeychainWrapper
 
 class LoginViewController: UIViewController {
 
@@ -28,7 +29,7 @@ class LoginViewController: UIViewController {
             let attributedString = NSAttributedString(string: "Forgot your password?", attributes: [NSForegroundColorAttributeName: UIColor.white, NSUnderlineStyleAttributeName:1])
             self.passwordButton.setAttributedTitle(attributedString, for: .normal)}
 //        //new user signed in
-//        DispatchQueue.global(qos: .userInitiated).async {Auth.auth().addStateDidChangeListener() { auth, user in
+//   DispatchQueue.global(qos: .userInitiated).async {Auth.auth().addStateDidChangeListener() { auth, user in
 //            if user != nil {
 //                self.performSegue(withIdentifier: "LoginToHome", sender: nil)
 //                self.LoginTextField.text = nil
@@ -36,6 +37,15 @@ class LoginViewController: UIViewController {
 //            }
 //            }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if Auth.auth().currentUser != nil {
+            self.performSegue(withIdentifier: "LoginToHome", sender: self)
+        }
+    }
+    
+    // Registration delegate
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "RegistrationSegue"
         {
@@ -67,9 +77,13 @@ class LoginViewController: UIViewController {
            
            if error == nil, user != nil {
             
-//               let uuid = UUID().uuidString
-//            let user = User(uid: uuid, email: self.LoginTextField.text!)
-//               self.newUser = user
+            // save userId to local library 
+            let user = User(uid: (user?.user.uid)!, email: self.LoginTextField.text!)
+               self.newUser = user
+            KeychainWrapper.standard.set(self.newUser.uid, forKey: "uid")
+
+
+            
                self.performSegue(withIdentifier: "LoginToHome", sender: nil)
                self.LoginTextField.text = nil
                self.PasswordTextField.text = nil   

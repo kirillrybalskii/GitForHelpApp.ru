@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SwiftKeychainWrapper
 
 class SettingsViewController: UIViewController {
 
@@ -21,6 +22,7 @@ class SettingsViewController: UIViewController {
             }
             do {
                 try Auth.auth().signOut()
+                KeychainWrapper.standard.removeObject(forKey: "uid")
                 self.dismiss(animated: true, completion: nil)
             } catch (let error) {
                 print("Auth sign out failed: \(error)")

@@ -17,14 +17,16 @@ struct UserInfo  {
     var universityName: String
     var facultyName: String
     var yearOfStudy: String
+    var userImage: String
     
-    init(name: String, universityName:String, facultyName: String, yearOfStudy: String, key: String = "") {
+    init(name: String, universityName:String, facultyName: String, yearOfStudy: String, userImage: String, key: String = "") {
         self.ref = nil
         self.key = key
         self.name = name
         self.universityName = universityName
         self.facultyName = facultyName
         self.yearOfStudy = yearOfStudy
+        self.userImage = userImage
     }
     init?(snapshot: DataSnapshot) {
         guard
@@ -32,7 +34,8 @@ struct UserInfo  {
         let name = value["name"] as? String,
         let universityName = value["university"] as? String,
         let facultyName = value["facultyName"] as? String,
-        let yearOfStudy = value["yearOfStudy"] as? String
+        let yearOfStudy = value["yearOfStudy"] as? String,
+        let userImage = value["userImage"] as? String
             else {return nil}
         
         self.ref = snapshot.ref
@@ -41,6 +44,7 @@ struct UserInfo  {
         self.universityName = universityName
         self.facultyName = facultyName
         self.yearOfStudy = yearOfStudy
+        self.userImage = userImage
     }
     
     func toAnyObject() -> Any {
@@ -48,7 +52,8 @@ struct UserInfo  {
             "name": name,
             "university": universityName,
             "facultyName": facultyName,
-            "year": yearOfStudy
+            "year": yearOfStudy,
+            "userImage": userImage
         ]
     }
 
