@@ -9,9 +9,12 @@
 import UIKit
 import Firebase
 import SwiftKeychainWrapper
+import FirebaseStorage
 
 class ProfileViewController: UIViewController {
     
+    
+    @IBOutlet weak var ProfileImage: UIImageView!
     @IBOutlet weak var UserName: UILabel!
     @IBOutlet weak var UniversityName: UILabel!
     @IBOutlet weak var FacultyName: UILabel!
@@ -27,47 +30,60 @@ class ProfileViewController: UIViewController {
     weak var PopUpAssignmentCreationReference: PopUpAssignmentFormViewController?
     var imagePicker: UIImagePickerController!
     let currentUserId = KeychainWrapper.standard.string(forKey: "uid")
-    
     var page: Int!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        createUserProfile()
+        populateWithUserAssignments()
         let nib = UINib(nibName: "CustomTableViewCell", bundle: nil)
         tableViewToDoList.register(nib, forCellReuseIdentifier: "customCell")
+        tableViewToDoList.backgroundColor = UIColor.white
         page = 0
-        createUserProfile()
-        PopUpAssignmentCreationReference?.delegate = self
-        populateWithUserAssignments()
     }
     
-//    func instantiateImagePicker() {
-//        imagePicker = UIImagePickerController()
-//        imagePicker.allowsEditing = true
-//        imagePicker.sourceType = .photoLibrary
-//        imagePicker.delegate = self
-//    }
-    
+
     func populateWithUserAssignments(){
-        if self.assignmentItems.count == 0{
-           let refUserAssignments = Database.database().reference(withPath:"usersInfo").child(self.currentUserId!).child("assignments")
+        
+        let refUserAssignments = Database.database().reference(withPath:"usersInfo").child(self.currentUserId!).child("assignments")
                 refUserAssignments.observe(.value, with: { snapshot in
-                    // 2
                     var newItems: [AssignmentItem] = []
-                    
-                    // 3
                     for child in snapshot.children {
-                        // 4
                         if let snapshot = child as? DataSnapshot,
                             let assignmentItem = AssignmentItem(snapshot: snapshot) {
                             newItems.append(assignmentItem)
                         }
                     }
-                    
-                    // 5
                     self.assignmentItems = newItems
                     self.tableViewToDoList.reloadData()
                 })
-                    }
+        
     }
+    
+    func downloadUserImageUrl(userImage: String) {
+        
+        let ref = Storage.storage().reference(forURL: userImage)
+        
+        ref.getData(maxSize: 1000000, completion: { (data, error) in
+            
+            if error != nil {
+                
+                print(" we couldnt upload the img")
+                
+            } else {
+                
+                if let imgData = data {
+                    
+                    if let img = UIImage(data: imgData) {
+                        
+                        self.ProfileImage.image = img
+                    }
+                }
+            }
+            
+        })
+    }
+
     
     func createUserProfile(){
         // with static properties
@@ -82,15 +98,15 @@ class ProfileViewController: UIViewController {
 //        FacultyName.text! = (JsonWork.userData?.facultyName)!
 //        YearOfStudy.text! = (JsonWork.userData?.yearOfStudy)!
         //with Firebase
-               let refUserInfo = Database.database().reference(withPath: "usersInfo")
-        refUserInfo.child(self.currentUserId!).observe(.value, with: { (snapshot) in
+               let refUserInfo = Database.database().reference().child("usersInfo")
+        refUserInfo.child(self.currentUserId!).child("userData").observe(.value, with: { (snapshot) in
             
-            if let snapshot = snapshot.value as? DataSnapshot, let userProfile = UserInfo(snapshot: snapshot){
-                self.UserName.text! = userProfile.name
-                self.UniversityName.text! = userProfile.universityName
-                self.FacultyName.text! = userProfile.facultyName
-                self.YearOfStudy.text! = userProfile.yearOfStudy
-            }
+                let userProfile = UserInfo(snapshot: snapshot)
+                self.UserName.text = userProfile?.name
+                self.UniversityName.text = userProfile?.universityName
+                self.FacultyName.text = userProfile?.facultyName
+                self.YearOfStudy.text = userProfile?.yearOfStudy
+                self.downloadUserImageUrl(userImage: (userProfile?.userImage)!)
         })
     }
 }
@@ -99,27 +115,26 @@ extension ProfileViewController: UITableViewDataSource,UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if page == 1 {
-            return assignmentItems.count }
+            return assignmentItems.count
+        }
         else { return 1 }
     }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //if page == 1 {
+        
+        if page == 1 {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! CustomTableViewCell
+        guard assignmentItems.count != 0
+            else {return UITableViewCell()}
         let assignment = assignmentItems[indexPath.row]
-        cell.whatToDo.text! = assignment.whatToDo
-        cell.subject.text! = assignment.subject
-        cell.deadline.text! = assignment.deadline
+        cell.customInit(WhatToDo: assignment.whatToDo, Subject: assignment.subject, Deadline: assignment.deadline)
         return cell
-        //    return cell }
-        //else { return }
+        } else {
+            return UITableViewCell()
+        }
         
     }
-}
 
-extension ProfileViewController: ProfileDelegate {
-    func DidCreateNewAssignment(assignment: AssignmentItem) {
-        assignmentItems.append(assignment)
-    }
 }
 
 

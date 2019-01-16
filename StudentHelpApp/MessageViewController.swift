@@ -14,13 +14,12 @@ import SwiftKeychainWrapper
 class MessageViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var sendButton: UIButton!
-    
     @IBOutlet weak var messageField: UITextField!
-    
     @IBOutlet weak var tableView: UITableView!
-
+    @IBOutlet weak var recipientLabel: UILabel!
+    
     //Properties
-    var messageId: String!
+    var dialogId: String!
     var messages = [Message]()
     var message: Message!
     var currentUser = KeychainWrapper.standard.string(forKey: "uid")    
@@ -30,96 +29,103 @@ class MessageViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         tableView.delegate = self
-        
         tableView.dataSource = self
-        
         tableView.rowHeight = UITableViewAutomaticDimension
-        
         tableView.estimatedRowHeight = 300
+
+        getRecipientName()
         
-        if messageId != "" && messageId != nil {
+        if dialogId != "" && dialogId != nil {
             
             loadData()
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-        
+
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        
         view.addGestureRecognizer(tap)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300)) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(800)) {
             
             self.moveToBottom()
         }
     }
     
-    
+    func getRecipientName() {
+        
+        let recipientData = Database.database().reference().child("users").child(recipient)
+        recipientData.observeSingleEvent(of: .value, with: { (snapshot) in
+
+            let data = snapshot.value as! Dictionary<String, AnyObject>
+            let username = data["name"]
+            //let userImg = data["userImage"]
+            self.recipientLabel.text! = username as! String
+        })
+    }
     @IBAction func sendPressed(_ sender: UIButton) {
+       
         dismissKeyboard()
         
  if (messageField.text != nil && messageField.text != "") {
      
-     if messageId == nil {
+     if dialogId == nil {
          
-         let post: Dictionary<String, AnyObject> = [
-             "message": messageField.text as AnyObject,
-             "sender": recipient as AnyObject
-         ]
-         
+       let post: Dictionary<String, AnyObject> = [
+          "message": messageField.text! as AnyObject,
+          "sender": currentUser! as AnyObject
+      ]
+        
          let message: Dictionary<String, AnyObject> = [
-             "lastmessage": messageField.text as AnyObject,
+             "lastmessage": messageField.text! as AnyObject,
              "recipient": recipient as AnyObject
          ]
          
          let recipientMessage: Dictionary<String, AnyObject> = [
-             "lastmessage": messageField.text as AnyObject,
-             "recipient": currentUser as AnyObject
+             "lastmessage": messageField.text! as AnyObject,
+             "recipient": currentUser! as AnyObject
          ]
          
-         messageId = Database.database().reference().child("messages").childByAutoId().key
+         dialogId = Database.database().reference().child("dialogs").childByAutoId().key
          
-         let firebaseMessage = Database.database().reference().child("messages").child(messageId).childByAutoId()
+         let firebaseMessage = Database.database().reference().child("dialogs").child(dialogId).childByAutoId()
          
-         firebaseMessage.setValue(post)
+        firebaseMessage.setValue(post)
          
-         let recipentMessage = Database.database().reference().child("users").child(recipient).child("messages").child(messageId)
+         let recipentMessage = Database.database().reference().child("usersInfo").child(recipient!).child("dialogs").child(dialogId)
          
          recipentMessage.setValue(recipientMessage)
          
-         let userMessage = Database.database().reference().child("users").child(currentUser!).child("messages").child(messageId)
+         let userMessage = Database.database().reference().child("usersInfo").child(currentUser!).child("dialogs").child(dialogId)
          
          userMessage.setValue(message)
          
          loadData()
-     } else if messageId != "" {
+     } else if dialogId != "" {
          
          let post: Dictionary<String, AnyObject> = [
-             "message": messageField.text as AnyObject,
-             "sender": recipient as AnyObject
+             "message": messageField.text! as AnyObject,
+             "sender": currentUser! as AnyObject
          ]
          
          let message: Dictionary<String, AnyObject> = [
-             "lastmessage": messageField.text as AnyObject,
+             "lastmessage": messageField.text! as AnyObject,
              "recipient": recipient as AnyObject
          ]
          
          let recipientMessage: Dictionary<String, AnyObject> = [
-             "lastmessage": messageField.text as AnyObject,
-             "recipient": currentUser as AnyObject
+             "lastmessage": messageField.text! as AnyObject,
+             "recipient": currentUser! as AnyObject
          ]
          
-         let firebaseMessage = Database.database().reference().child("messages").child(messageId).childByAutoId()
+         let firebaseMessage = Database.database().reference().child("dialogs").child(dialogId).childByAutoId()
          
          firebaseMessage.setValue(post)
          
-         let recipentMessage = Database.database().reference().child("users").child(recipient).child("messages").child(messageId)
+         let recipentMessage = Database.database().reference().child("usersInfo").child(recipient).child("dialogs").child(dialogId)
          
          recipentMessage.setValue(recipientMessage)
          
-         let userMessage = Database.database().reference().child("users").child(currentUser!).child("messages").child(messageId)
+         let userMessage = Database.database().reference().child("usersInfo").child(currentUser!).child("dialogs").child(dialogId)
          
          userMessage.setValue(message)
          
@@ -138,7 +144,7 @@ class MessageViewController: UIViewController, UITextFieldDelegate {
 
     //MARK: Common functions
     func loadData() {
-        Database.database().reference().child("messages").child(messageId).observe(.value, with: { (snapshot) in
+        Database.database().reference().child("dialogs").child(dialogId).observe(.value, with: { (snapshot) in
             
             if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
                 

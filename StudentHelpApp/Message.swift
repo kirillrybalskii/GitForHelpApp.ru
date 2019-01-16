@@ -11,7 +11,7 @@ import Firebase
 import FirebaseDatabase
 import SwiftKeychainWrapper
 
-class Message {
+struct Message {
     
     private var _message: String!
     
@@ -19,7 +19,7 @@ class Message {
     
     private var _messageKey: String!
     
-    private var _messageRef: DatabaseReference!
+    private var _dialogRef: DatabaseReference!
     
     var currentUser = KeychainWrapper.standard.string(forKey: "uid")
     
@@ -59,7 +59,7 @@ class Message {
             _sender = sender
         }
         
-        _messageRef = Database.database().reference().child("messages").child(_messageKey)
+        _dialogRef = Database.database().reference().child("dialogs").child(_messageKey)
     }
 }
 

@@ -25,9 +25,9 @@ class LoginViewController: UIViewController {
    
     override func viewDidLoad() {
         super.viewDidLoad()
-
             let attributedString = NSAttributedString(string: "Forgot your password?", attributes: [NSForegroundColorAttributeName: UIColor.white, NSUnderlineStyleAttributeName:1])
-            self.passwordButton.setAttributedTitle(attributedString, for: .normal)}
+        self.passwordButton.setAttributedTitle(attributedString, for: .normal)
+    }
 //        //new user signed in
 //   DispatchQueue.global(qos: .userInitiated).async {Auth.auth().addStateDidChangeListener() { auth, user in
 //            if user != nil {
@@ -37,14 +37,24 @@ class LoginViewController: UIViewController {
 //            }
 //            }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        if Auth.auth().currentUser != nil {
-            self.performSegue(withIdentifier: "LoginToHome", sender: self)
-        }
-    }
-    
+//   override func viewWillAppear(_ animated: Bool) {
+//       super.viewWillAppear(animated)
+//       
+//       if Auth.auth().currentUser != nil {
+//           self.performSegue(withIdentifier: "LoginToHome", sender: self)
+//    }
+//    }
+
+
+   override func viewDidAppear(_ animated: Bool) {
+       
+       if let _ = KeychainWrapper.standard.string(forKey: "uid") {
+           
+           performSegue(withIdentifier: "LoginToHome", sender: nil)
+       }
+   }
+
+
     // Registration delegate
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "RegistrationSegue"

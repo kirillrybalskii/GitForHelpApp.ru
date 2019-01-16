@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C4BB05B13F2FA1405BD943EB /* Pods_StudentHelpApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69075B4575EEC7C189B7A049 /* Pods_StudentHelpApp.framework */; };
+		CE537FB121ED029900DE8BDD /* LocalUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE537FB021ED029900DE8BDD /* LocalUser.swift */; };
 		CE86F5CD21DA835F00F79D1B /* JsonWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE86F5CC21DA835F00F79D1B /* JsonWork.swift */; };
 		CE86F5D221E397ED00F79D1B /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE86F5D021E397ED00F79D1B /* CustomTableViewCell.swift */; };
 		CE86F5D321E397ED00F79D1B /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE86F5D121E397ED00F79D1B /* CustomTableViewCell.xib */; };
@@ -39,13 +40,13 @@
 		CEF0A13B21B8010300E0AADC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEF0A13A21B8010300E0AADC /* GoogleService-Info.plist */; };
 		CEF0A15B21B9490400E0AADC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF0A15A21B9490400E0AADC /* User.swift */; };
 		CEF0A16221B9602600E0AADC /* AssignmentItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF0A16121B9602600E0AADC /* AssignmentItem.swift */; };
-		CEF0A16621C8392E00E0AADC /* ResponsesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF0A16521C8392E00E0AADC /* ResponsesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1E6485A26DA7CF96813805E0 /* Pods-StudentHelpApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudentHelpApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-StudentHelpApp/Pods-StudentHelpApp.release.xcconfig"; sourceTree = "<group>"; };
 		4825B262354E81B0D4E8B193 /* Pods-StudentHelpApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudentHelpApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StudentHelpApp/Pods-StudentHelpApp.debug.xcconfig"; sourceTree = "<group>"; };
 		69075B4575EEC7C189B7A049 /* Pods_StudentHelpApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StudentHelpApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE537FB021ED029900DE8BDD /* LocalUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalUser.swift; sourceTree = "<group>"; };
 		CE86F5CC21DA835F00F79D1B /* JsonWork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonWork.swift; sourceTree = "<group>"; };
 		CE86F5D021E397ED00F79D1B /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		CE86F5D121E397ED00F79D1B /* CustomTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
@@ -80,7 +81,6 @@
 		CEF0A15A21B9490400E0AADC /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		CEF0A15C21B94D3600E0AADC /* StudentHelpApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StudentHelpApp.entitlements; sourceTree = "<group>"; };
 		CEF0A16121B9602600E0AADC /* AssignmentItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentItem.swift; sourceTree = "<group>"; };
-		CEF0A16521C8392E00E0AADC /* ResponsesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponsesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,7 +223,6 @@
 			isa = PBXGroup;
 			children = (
 				CEE3F14C21E7C19100AC07AA /* View */,
-				CEF0A16521C8392E00E0AADC /* ResponsesViewController.swift */,
 				CE95EFE121D950990030A21B /* ProfileViewController.swift */,
 				CE86F5D421E4E02C00F79D1B /* SettingsViewController.swift */,
 			);
@@ -239,6 +238,7 @@
 				CEE3F14321E67C5E00AC07AA /* MessageDetail.swift */,
 				CEE3F14721E77D6B00AC07AA /* Message.swift */,
 				CE9362CA21E88C63008C6B2E /* Search.swift */,
+				CE537FB021ED029900DE8BDD /* LocalUser.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -376,12 +376,12 @@
 				CE86F5CD21DA835F00F79D1B /* JsonWork.swift in Sources */,
 				CEF0A13021B5B35500E0AADC /* TableViewCellUser.swift in Sources */,
 				CEF0A12821B5A09100E0AADC /* TableViewUsers.swift in Sources */,
+				CE537FB121ED029900DE8BDD /* LocalUser.swift in Sources */,
 				CEF0A15B21B9490400E0AADC /* User.swift in Sources */,
 				CE86F5D521E4E02C00F79D1B /* SettingsViewController.swift in Sources */,
 				CEF0A11421B3F92400E0AADC /* LoginViewController.swift in Sources */,
 				CE95EFD421C95FAA0030A21B /* FileSave.swift in Sources */,
 				CE9362CB21E88C63008C6B2E /* Search.swift in Sources */,
-				CEF0A16621C8392E00E0AADC /* ResponsesViewController.swift in Sources */,
 				CEF0A11221B3F92400E0AADC /* AppDelegate.swift in Sources */,
 				CE95EFD221C95EFA0030A21B /* FileDirectory.swift in Sources */,
 				CE9362CD21E90DAF008C6B2E /* SearchTableViewCell.swift in Sources */,
@@ -525,6 +525,7 @@
 				CODE_SIGN_ENTITLEMENTS = StudentHelpApp/StudentHelpApp.entitlements;
 				DEVELOPMENT_TEAM = A8BV4KH7P4;
 				INFOPLIST_FILE = StudentHelpApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = HSE.StudentHelpApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -540,6 +541,7 @@
 				CODE_SIGN_ENTITLEMENTS = StudentHelpApp/StudentHelpApp.entitlements;
 				DEVELOPMENT_TEAM = A8BV4KH7P4;
 				INFOPLIST_FILE = StudentHelpApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = HSE.StudentHelpApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";

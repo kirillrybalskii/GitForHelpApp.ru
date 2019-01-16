@@ -12,9 +12,13 @@ import SwiftKeychainWrapper
 
 class SearchToSendViewController: UIViewController {
 
-    @IBOutlet weak var searchBar: UISearchBar!
-    
+    @IBOutlet weak var searchBar: UISearchBar!    
     @IBOutlet weak var tableView: UITableView!
+    @IBAction func goBack(_ sender: AnyObject) {
+        
+        dismiss(animated: true, completion: nil)
+    }
+
     
     // Properties
     var searchDetail = [Search]()
@@ -22,7 +26,7 @@ class SearchToSendViewController: UIViewController {
     var isSearching = false
     var detail: Search!
     var recipient: String!
-    var messageId: String!
+    var dialogId: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,7 +67,7 @@ class SearchToSendViewController: UIViewController {
             
             destionViewController.recipient = recipient
             
-            destionViewController.messageId = messageId
+            destionViewController.dialogId = dialogId
         }
     }
 }

@@ -10,7 +10,7 @@ import Foundation
 import Firebase
 import SwiftKeychainWrapper
 
-class Search {
+struct Search {
     
     private var _username: String!
     

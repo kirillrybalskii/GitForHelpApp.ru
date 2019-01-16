@@ -23,7 +23,7 @@ class ChatMessageTableViewCell: UITableViewCell {
     
     var currentUser = KeychainWrapper.standard.string(forKey: "uid")
     
-    func configCell(message: Message) {
+    func configCell(message: Message) { 
         self.message = message
         
         if message.sender == currentUser {

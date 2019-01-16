@@ -18,7 +18,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     var detail: MessageDetail!
     var currentUser = KeychainWrapper.standard.string(forKey: "uid")
     var recipient: String!
-    var messageId: String!
+    var dialogId: String!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +26,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
        tableView.delegate = self
        tableView.dataSource = self
         
-        Database.database().reference().child("users").child(currentUser!).child("messages").observe(.value, with: { (snapshot) in
+        Database.database().reference().child("usersInfo").child(currentUser!).child("dialogs").observe(.value, with: { (snapshot) in
            
             if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
                 self.messageDetail.removeAll()
@@ -49,7 +49,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let messageDet = messageDetail[indexPath.row]
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell") as? MessageTableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell") as? MessageTableViewCell, self.messageDetail.count != 0 {
             
             cell.configureCell(messageDetail: messageDet)
             
@@ -65,7 +65,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         recipient = messageDetail[indexPath.row].recipient
         
-        messageId = messageDetail[indexPath.row].messageRef.key
+        dialogId = messageDetail[indexPath.row].messageRef.key
         
         performSegue(withIdentifier: "toMessages", sender: nil)
     }
@@ -76,7 +76,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             destinationViewController.recipient = recipient
             
-            destinationViewController.messageId = messageId
+            destinationViewController.dialogId = dialogId
         }
     }
 

@@ -14,15 +14,13 @@ enum selectedScope:Int {
     case subject = 0
     case user = 1
 }
-protocol ProfileDelegate {
-    func DidCreateNewAssignment(assignment: AssignmentItem)
-}
 
 class TableViewUsers: UITableViewController, UISearchBarDelegate {
     
     @IBOutlet weak var TableViewUsers: UITableView!
     //MARK: Properties
     var user : User!
+    var profileUser: UserInfo!
     var assignmentItem: [AssignmentItem] = []
     let ref = Database.database().reference(withPath: "assignments")
     let usersRef = Database.database().reference(withPath: "online")
@@ -30,19 +28,47 @@ class TableViewUsers: UITableViewController, UISearchBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        ref.observe(.value, with: {snapshot in
-            var Items : [AssignmentItem] = []
-            for child in snapshot.children{
-                if let snapshot = child as? DataSnapshot,
-                    let userItem = AssignmentItem(snapshot: snapshot) {
-                    Items.append(userItem)}
-            }
-            self.assignmentItem = Items
-            self.initialDataAry = Items
-            self.tableView.reloadData()
+        self.searchBarSetup()
+        downLoadAssignmets()
+        downloadUserProfile()
+        upLoadOnlineUsers()
+    }
+
+    func downloadUserProfile() {
+        let currentUserId = KeychainWrapper.standard.string(forKey: "uid")
+        let refUserInfo = Database.database().reference().child("usersInfo")
+        refUserInfo.child(currentUserId!).child("userData").observe(.value, with: { (snapshot) in
+            
+            let userProfile = UserInfo(snapshot: snapshot)
+            self.profileUser = userProfile!
+//            self.profileUser.userImage = userProfile!.userImage
+//            self.profileUser.universityName = (userProfile?.universityName)!
+//            self.profileUser.facultyName = (userProfile?.facultyName)!
+//            self.profileUser.name = (userProfile?.name)!
+//            self.profileUser.yearOfStudy = (userProfile?.yearOfStudy)!
+            print("current userProfileInfo downloaded")
+
         })
-     self.searchBarSetup()
-     print("numberOfAssingments: \(assignmentItem.count)")
+            }
+
+   func downLoadAssignmets() {
+    
+    ref.observe(.value, with: {snapshot in
+    var Items : [AssignmentItem] = []
+    for child in snapshot.children{
+    if let snapshot = child as? DataSnapshot,
+    let userItem = AssignmentItem(snapshot: snapshot) {
+    Items.append(userItem)}
+    }
+    self.assignmentItem = Items
+    self.initialDataAry = Items
+    self.tableView.reloadData()
+        print("numberOfAssingments: \(self.assignmentItem.count)")
+    })
+
+    }
+    
+    func upLoadOnlineUsers() {
         
         Auth.auth().addStateDidChangeListener { auth, user in
             guard let user = user else { return }
@@ -51,14 +77,15 @@ class TableViewUsers: UITableViewController, UISearchBarDelegate {
             let currentUserRef = self.usersRef.child(self.user.uid)
             currentUserRef.setValue(self.user.email)
             currentUserRef.onDisconnectRemoveValue()
+            
         }
-
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "PopUpSegue"{
     let destinationVC = segue.destination as! PopUpAssignmentFormViewController
     destinationVC.user = self.user
+    destinationVC.userProfileInfo = self.profileUser
         }
     }
     
@@ -80,21 +107,8 @@ class TableViewUsers: UITableViewController, UISearchBarDelegate {
         cell.ProfileImage.clipsToBounds = true
         
         let assignment = assignmentItem[indexPath.row]
-        cell.ProfileImage.image = UIImage(named: "TestImage")
-        cell.UserName.text? = assignment.addedByUser
-        cell.Subject.text! = assignment.subject
-        cell.TaskInfo.text! = assignment.whatToDo
-       // cell.Deadline.text! = String(describing: daysBetween(deadline: assignment.deadline))
-        cell.Deadline.text! = assignment.deadline
+        cell.configCell(assignmentItem: assignment)
         return cell
-    }
-    
-    func daysBetween(deadline: String) -> Int? {
-        let dateStringFormatter = DateFormatter()
-        dateStringFormatter.dateFormat = "MM/dd/yyyy"
-        let endDate: Date = dateStringFormatter.date(from: deadline)!
-        let currentDate = Date()
-        return Calendar.current.dateComponents([Calendar.Component.day], from: currentDate, to: endDate).day!
     }
     
    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

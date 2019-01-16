@@ -38,10 +38,11 @@ class JsonWork {
             let name = dictionary["name"],
             let universityName = dictionary["university"],
             let facultyName = dictionary["facultyName"],
-            let yearOfStudy = dictionary["year"]
+            let yearOfStudy = dictionary["year"],
+            let userImage = dictionary["userImage"]
             else {return}
             
-        let user = UserInfo(name: name, universityName:universityName, facultyName: facultyName, yearOfStudy: yearOfStudy)
+            let user = UserInfo(name: name, universityName:universityName, facultyName: facultyName, yearOfStudy: yearOfStudy, userImage: userImage)
         self.userData = user
         print("deserialized data \(user)")
         } catch {
@@ -81,7 +82,7 @@ class JsonWork {
                 let addedByUser = dictionary["addedByUser"],
                 let completed = dictionary["completed"]
                 else {return}
-            let newAssignment = AssignmentItem(whatToDo: whatToDo, subject: subject, deadline: deadline, addedByUser: addedByUser, completed: completed.stringToBool())
+            let newAssignment = AssignmentItem(whatToDo: whatToDo, subject: subject, addedByUser: addedByUser, userImage: LocalUser.userImage!, deadline: deadline, completed: completed.stringToBool())
             self.assignmentsFromJson.append(newAssignment)
                     print("assignments\(dictionary as AnyObject)")
         } catch {print(error)

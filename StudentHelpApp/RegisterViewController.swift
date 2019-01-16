@@ -50,16 +50,17 @@ class RegisterViewController: UIViewController, UINavigationControllerDelegate {
         createPicker()
         createToolBar()
     }
-    override func viewDidDisappear(_ animated: Bool) {
-        
-        if let _ = KeychainWrapper.standard.string(forKey: "uid") {
-            
-            performSegue(withIdentifier: "toMessage", sender: nil)
-        }
-    }
-    
+//    override func viewDidDisappear(_ animated: Bool) {
+//        
+//        if let _ = KeychainWrapper.standard.string(forKey: "uid") {
+//            
+//            performSegue(withIdentifier: "toMessage", sender: nil)
+//        }
+//    }
+//    
     func createImagePicker() {
         imagePicker = UIImagePickerController()
+        imagePicker.sourceType = .photoLibrary
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
     }
@@ -123,6 +124,12 @@ class RegisterViewController: UIViewController, UINavigationControllerDelegate {
                 if error == nil {
                     print("username saved to Auth")
                     
+                    //initial registration data
+                    LocalUser.name = self.nameTextField.text!
+                    LocalUser.universityName = self.universityNameTextField.text!
+                    LocalUser.facultyName = self.facultyNameTextField.text!
+                    LocalUser.yearOfStudy = self.yearOfStudyTextField.text!
+                    
                  //new user to Firebase(to users and userId/userData)
                 self.userId = user!.user.uid
                     self.uploadImg()
@@ -144,12 +151,18 @@ class RegisterViewController: UIViewController, UINavigationControllerDelegate {
     }
     func uploadImg() {
         
-        guard let img = userImagePicker.image, imageSelected == true else {
-            
-            print("image needs to be selected")
-            
-            return
-        }
+//        guard let img = userImagePicker.image, imageSelected == true else {
+//           
+//            let alertController = UIAlertController(title: "Error", message: "photo have to be selected", preferredStyle: .alert)
+//            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+//            alertController.addAction(defaultAction)
+//            self.present(alertController, animated: true, completion: nil)
+//            print("Image needs to be selected")
+//            
+//            return
+//        }
+        
+        let img = #imageLiteral(resourceName: "TestImage")
         
         if let imgData = UIImageJPEGRepresentation(img, 0.2) {
             
@@ -159,7 +172,7 @@ class RegisterViewController: UIViewController, UINavigationControllerDelegate {
             
             metadata.contentType = "image/jpeg"
             
-         Storage.storage().reference().child(imgUid).putData(imgData, metadata: metadata) { (metadata, error) in
+           Storage.storage().reference().child(imgUid).putData(imgData, metadata: metadata) { (metadata, error) in
                 
                 if error != nil {
                     
@@ -167,19 +180,24 @@ class RegisterViewController: UIViewController, UINavigationControllerDelegate {
                 } else {
                     
                     print("uploaded")
-                    
-                    metadata?.storageReference?.downloadURL(completion: { (url, error) in
-                        if let error = error {
-                            print(error.localizedDescription)
-                            return
-                        }
-                        self.userToFirebase(userImageUrl: url!.absoluteString)
-                    })
+                  let storageRef = Storage.storage().reference().child(imgUid)
+                  storageRef.downloadURL(completion: { (url, error) in
+                       if error == nil {
+                      self.userToFirebase(userImageUrl: url!.absoluteString)
+                       } else {
+                          print("downloadURL error \(error?.localizedDescription)")
+                          return
+                      }
+                  })
                    
                 }
             }
+            
         }
     }
+    
+    
+
     func userToFirebase(userImageUrl: String) {
         let userInfo = UserInfo(name: self.nameTextField.text!, universityName: self.universityNameTextField.text!, facultyName: self.facultyNameTextField.text!, yearOfStudy: self.yearOfStudyTextField.text!, userImage: userImageUrl)
         KeychainWrapper.standard.set(self.userId!, forKey: "uid")

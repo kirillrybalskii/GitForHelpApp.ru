@@ -9,9 +9,12 @@
 import Foundation
 import Firebase
 import SwiftKeychainWrapper
+
 class MessageDetail {
     
     private var _recipient: String!
+    
+    private var _lastMessage: String!
     
     private var _messageKey: String!
     
@@ -22,6 +25,10 @@ class MessageDetail {
     var recipient: String {
         
         return _recipient
+    }
+    
+    var lastMessage: String {
+        return _lastMessage
     }
     
     var messageKey: String {
@@ -46,6 +53,10 @@ class MessageDetail {
         if let recipient = messageData["recipient"] as? String {
             
             _recipient = recipient
+        }
+        
+        if let lastMess = messageData["lastmessage"] as? String {
+            _lastMessage = lastMess
         }
         
         _messageRef = Database.database().reference().child("recipient").child(_messageKey)

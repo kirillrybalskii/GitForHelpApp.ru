@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudentHelpApp/TableViewCellUser.swift"
-            timestampString = "566870276.878224"
+            timestampString = "569181420.679135"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "13"
-            endingLineNumber = "13"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
             landmarkName = "TableViewCellUser"
             landmarkType = "3">
          </BreakpointContent>

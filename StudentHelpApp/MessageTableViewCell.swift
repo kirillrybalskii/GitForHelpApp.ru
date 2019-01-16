@@ -36,11 +36,12 @@ class MessageTableViewCell: UITableViewCell {
             
             let data = snapshot.value as! Dictionary<String, AnyObject>
             
-            let username = data["username"]
+            let username = data["name"]
             
-            let userImg = data["userImg"]
+            let userImg = data["userImage"]
             
             self.recipientName.text = username as? String
+            self.chatPreview.text = messageDetail.lastMessage
             
             let ref = Storage.storage().reference(forURL: userImg! as! String)
             

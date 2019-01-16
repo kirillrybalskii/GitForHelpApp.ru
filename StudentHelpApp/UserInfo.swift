@@ -8,6 +8,7 @@
 
 import Foundation
 import FirebaseDatabase
+import FirebaseStorage
 
 struct UserInfo  {
     
@@ -31,12 +32,12 @@ struct UserInfo  {
     init?(snapshot: DataSnapshot) {
         guard
         let value = snapshot.value as? [String: AnyObject],
-        let name = value["name"] as? String,
-        let universityName = value["university"] as? String,
-        let facultyName = value["facultyName"] as? String,
-        let yearOfStudy = value["yearOfStudy"] as? String,
-        let userImage = value["userImage"] as? String
-            else {return nil}
+            let name = value["name"] as? String,
+            let universityName = value["university"] as? String,
+            let facultyName = value["facultyName"] as? String,
+            let yearOfStudy = value["year"] as? String,
+            let userImage = value["userImage"] as? String
+                            else {return nil}
         
         self.ref = snapshot.ref
         self.key = snapshot.key
@@ -56,6 +57,5 @@ struct UserInfo  {
             "userImage": userImage
         ]
     }
-
-    
 }
+
