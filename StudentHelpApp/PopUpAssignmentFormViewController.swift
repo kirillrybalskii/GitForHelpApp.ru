@@ -76,6 +76,10 @@ class PopUpAssignmentFormViewController: UIViewController {
         self.removeAnimate()
     }
     
+    @IBAction func backPressed(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     
     func showAnimate()
     {

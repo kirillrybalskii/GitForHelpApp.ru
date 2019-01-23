@@ -29,18 +29,17 @@ class ChatMessageTableViewCell: UITableViewCell {
         if message.sender == currentUser {
             
             sentMessageView.isHidden = false
-            
             sentMessageLbl.text = message.message
             
-            recievedMessageLbl.text = ""
+            //recievedMessageLbl.text = ""
             
-            recievedMessageLbl.isHidden = true
+            recievedMessageView.isHidden = true
             
         } else {
             
             sentMessageView.isHidden = true
             
-            sentMessageLbl.text = ""
+           // sentMessageLbl.text = ""
             
             recievedMessageLbl.text = message.message
             
@@ -48,5 +47,13 @@ class ChatMessageTableViewCell: UITableViewCell {
         }
     }
 
+}
+extension UIView {
+    func changeToCircle() {
+       self.layer.cornerRadius = self.frame.size.width/2
+       self.clipsToBounds = true
+       self.layer.borderColor = UIColor.white.cgColor
+       self.layer.borderWidth = 5.0
+    }
 }
 

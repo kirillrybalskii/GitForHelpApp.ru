@@ -27,11 +27,20 @@ class TableViewUsers: UITableViewController, UISearchBarDelegate {
     var cellData = [TableViewCellUser]()
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        self.searchBarSetup()
+        super.viewDidLoad() 
+        searchBarSetup()
         downLoadAssignmets()
         downloadUserProfile()
         upLoadOnlineUsers()
+    }
+    
+    func searchBarSetup() {
+        let searchBar = UISearchBar(frame: CGRect(x:0,y:0,width:(UIScreen.main.bounds.width),height:70))
+        searchBar.showsScopeBar = true
+        searchBar.scopeButtonTitles = ["Subject","User"]
+        searchBar.selectedScopeButtonIndex = 0
+        searchBar.delegate = self
+        self.tableView.tableHeaderView = searchBar
     }
 
     func downloadUserProfile() {
@@ -127,14 +136,6 @@ class TableViewUsers: UITableViewController, UISearchBarDelegate {
     // MARK: - search bar delegate
     var initialDataAry: [AssignmentItem] = []
     
-    func searchBarSetup() {
-        let searchBar = UISearchBar(frame: CGRect(x:0,y:0,width:(UIScreen.main.bounds.width),height:70))
-        searchBar.showsScopeBar = true
-        searchBar.scopeButtonTitles = ["Subject","User"]
-        searchBar.selectedScopeButtonIndex = 0
-        searchBar.delegate = self
-        self.tableView.tableHeaderView = searchBar
-    }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         

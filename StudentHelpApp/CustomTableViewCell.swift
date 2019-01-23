@@ -26,7 +26,7 @@ class CustomTableViewCell: UITableViewCell {
         self.subject.text = Subject
         self.deadline.text = Deadline
         
-        self.whatToDo.textColor = UIColor.blue
+        self.whatToDo.font = UIFont.boldSystemFont(ofSize: 16.0)
     }
     
 }

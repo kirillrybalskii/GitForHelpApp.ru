@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C4BB05B13F2FA1405BD943EB /* Pods_StudentHelpApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69075B4575EEC7C189B7A049 /* Pods_StudentHelpApp.framework */; };
+		CE3CCF7721F64247002526C3 /* TabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3CCF7621F64247002526C3 /* TabBarVC.swift */; };
 		CE537FB121ED029900DE8BDD /* LocalUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE537FB021ED029900DE8BDD /* LocalUser.swift */; };
 		CE86F5CD21DA835F00F79D1B /* JsonWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE86F5CC21DA835F00F79D1B /* JsonWork.swift */; };
 		CE86F5D221E397ED00F79D1B /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE86F5D021E397ED00F79D1B /* CustomTableViewCell.swift */; };
@@ -46,6 +47,7 @@
 		1E6485A26DA7CF96813805E0 /* Pods-StudentHelpApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudentHelpApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-StudentHelpApp/Pods-StudentHelpApp.release.xcconfig"; sourceTree = "<group>"; };
 		4825B262354E81B0D4E8B193 /* Pods-StudentHelpApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudentHelpApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StudentHelpApp/Pods-StudentHelpApp.debug.xcconfig"; sourceTree = "<group>"; };
 		69075B4575EEC7C189B7A049 /* Pods_StudentHelpApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StudentHelpApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE3CCF7621F64247002526C3 /* TabBarVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarVC.swift; sourceTree = "<group>"; };
 		CE537FB021ED029900DE8BDD /* LocalUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalUser.swift; sourceTree = "<group>"; };
 		CE86F5CC21DA835F00F79D1B /* JsonWork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonWork.swift; sourceTree = "<group>"; };
 		CE86F5D021E397ED00F79D1B /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 				CEE3F14721E77D6B00AC07AA /* Message.swift */,
 				CE9362CA21E88C63008C6B2E /* Search.swift */,
 				CE537FB021ED029900DE8BDD /* LocalUser.swift */,
+				CE3CCF7621F64247002526C3 /* TabBarVC.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -386,6 +389,7 @@
 				CE95EFD221C95EFA0030A21B /* FileDirectory.swift in Sources */,
 				CE9362CD21E90DAF008C6B2E /* SearchTableViewCell.swift in Sources */,
 				CEE3F14E21E8820000AC07AA /* SearchToSendViewController.swift in Sources */,
+				CE3CCF7721F64247002526C3 /* TabBarVC.swift in Sources */,
 				CEF0A12421B55EAD00E0AADC /* LoginTextField.swift in Sources */,
 				CE95EFD821D525BD0030A21B /* RegisterViewController.swift in Sources */,
 				CEE3F14221E67B3400AC07AA /* MessageTableViewCell.swift in Sources */,

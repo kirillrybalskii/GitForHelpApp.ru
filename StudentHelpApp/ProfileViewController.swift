@@ -34,6 +34,7 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideBottomLineOfNavigationItem()
         createUserProfile()
         populateWithUserAssignments()
         let nib = UINib(nibName: "CustomTableViewCell", bundle: nil)
@@ -43,6 +44,11 @@ class ProfileViewController: UIViewController {
     }
     
 
+    func hideBottomLineOfNavigationItem() {
+        let navigationBar = self.navigationController?.navigationBar
+        navigationBar?.setBackgroundImage(UIImage(), for: UIBarPosition.any, barMetrics: UIBarMetrics.default)
+        navigationBar?.shadowImage = UIImage()
+    }
     func populateWithUserAssignments(){
         
         let refUserAssignments = Database.database().reference(withPath:"usersInfo").child(self.currentUserId!).child("assignments")
@@ -75,8 +81,13 @@ class ProfileViewController: UIViewController {
                 if let imgData = data {
                     
                     if let img = UIImage(data: imgData) {
-                        
                         self.ProfileImage.image = img
+                       self.ProfileImage.layer.borderWidth = 1
+                       self.ProfileImage.layer.masksToBounds = false
+                       self.ProfileImage.layer.borderColor = UIColor.black.cgColor
+                       self.ProfileImage.layer.cornerRadius = self.ProfileImage.frame.height/2
+                       self.ProfileImage.clipsToBounds = true
+
                     }
                 }
             }
@@ -97,6 +108,7 @@ class ProfileViewController: UIViewController {
 //        UniversityName.text! = (JsonWork.userData?.universityName)!
 //        FacultyName.text! = (JsonWork.userData?.facultyName)!
 //        YearOfStudy.text! = (JsonWork.userData?.yearOfStudy)!
+        
         //with Firebase
                let refUserInfo = Database.database().reference().child("usersInfo")
         refUserInfo.child(self.currentUserId!).child("userData").observe(.value, with: { (snapshot) in

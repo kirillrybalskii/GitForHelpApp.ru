@@ -56,6 +56,12 @@ class MessageTableViewCell: UITableViewCell {
                         if let img = UIImage(data: imgData) {
                             
                             self.recipientImg.image = img
+                            self.recipientImg.layer.borderWidth = 1
+                            self.recipientImg.layer.masksToBounds = false
+                            self.recipientImg.layer.borderColor = UIColor.black.cgColor
+                            self.recipientImg.layer.cornerRadius = self.recipientImg.frame.height/2
+                            self.recipientImg.clipsToBounds = true
+
                         }
                     }
                 }
