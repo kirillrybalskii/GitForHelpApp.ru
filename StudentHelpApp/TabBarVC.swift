@@ -28,13 +28,13 @@ class TabBarVC: UITabBarController {
         
         let selectedImageSearch = UIImage(named: "searchBlue")?.withRenderingMode(.alwaysOriginal)
         let DeSelectedImageSearch = UIImage(named: "searchGrey")?.withRenderingMode(.alwaysOriginal)
-        tabBarItem = (self.tabBar.items?[1])!
+        tabBarItem = (self.tabBar.items?[0])!
         tabBarItem.image = DeSelectedImageSearch
         tabBarItem.selectedImage = selectedImageSearch
         
         let selectedImageMessage = UIImage(named: "messageBlue")?.withRenderingMode(.alwaysOriginal)
         let deselectedImageMessage = UIImage(named: "messageGrey")?.withRenderingMode(.alwaysOriginal)
-        tabBarItem = (self.tabBar.items?[0])!
+        tabBarItem = (self.tabBar.items?[1])!
         tabBarItem.image = deselectedImageMessage
         tabBarItem.selectedImage =  selectedImageMessage
         
@@ -43,7 +43,6 @@ class TabBarVC: UITabBarController {
         tabBarItem = (self.tabBar.items?[2])!
         tabBarItem.image = deselectedImageProfile
         tabBarItem.selectedImage = selectedImageProfile
-        tabBarItem.badgeColor = UIColor.blue
         
         // selected tab background color
         //let numberOfItems = CGFloat(tabBar.items!.count)

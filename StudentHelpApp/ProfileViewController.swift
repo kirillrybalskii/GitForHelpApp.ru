@@ -32,6 +32,7 @@ class ProfileViewController: UIViewController {
     let currentUserId = KeychainWrapper.standard.string(forKey: "uid")
     var page: Int!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         hideBottomLineOfNavigationItem()

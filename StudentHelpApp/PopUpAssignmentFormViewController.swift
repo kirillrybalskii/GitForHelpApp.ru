@@ -26,8 +26,10 @@ class PopUpAssignmentFormViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewPopUp.layer.cornerRadius = 15
+        viewPopUp.layer.cornerRadius = 12
         viewPopUp.layer.masksToBounds = true
+        viewPopUp.layer.borderWidth = 0
+        viewPopUp.layer.borderColor = UIColor(white: 231 / 255, alpha: 1).cgColor
 
         createDatePicker()
         createToolBar()
@@ -73,7 +75,7 @@ class PopUpAssignmentFormViewController: UIViewController {
         let refUserAssignments = Database.database().reference(withPath: "usersInfo").child((self.user?.userId)!).child("assignments").child(assignmentId!)
         refAssignments.setValue(assignment.toAnyObject())
         refUserAssignments.setValue(assignment.toAnyObject())
-        self.removeAnimate()
+        //self.removeAnimate()
     }
     
     @IBAction func backPressed(_ sender: UIButton) {
@@ -86,21 +88,52 @@ class PopUpAssignmentFormViewController: UIViewController {
         self.view.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
         self.view.alpha = 0.0;
         UIView.animate(withDuration: 0.25, animations: {
-            self.view.alpha = 1.0
+            self.view.alpha = 1.5
             self.view.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
         });
     }
     
-    func removeAnimate()
-    {
-        UIView.animate(withDuration: 0.25, animations: {
-            self.view.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
-            self.view.alpha = 0.0;
-            }, completion:{(finished : Bool)  in
-                if (finished)
-                {
-                    self.view.removeFromSuperview()
-                }
-        });
+//    func removeAnimate()
+//    {
+//        UIView.animate(withDuration: 0.25, animations: {
+//            self.view.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+//            self.view.alpha = 0.0;
+//            }, completion:{(finished : Bool)  in
+//                if (finished)
+//                {
+//                    self.view.removeFromSuperview()
+//                }
+//        });
+//    }
+}
+@IBDesignable extension UIButton {
+    
+    @IBInspectable var borderWidth: CGFloat {
+        set {
+            layer.borderWidth = newValue
+        }
+        get {
+            return layer.borderWidth
+        }
+    }
+    
+    @IBInspectable var cornerRadius: CGFloat {
+        set {
+            layer.cornerRadius = newValue
+        }
+        get {
+            return layer.cornerRadius
+        }
+    }
+    
+    @IBInspectable var borderColor: UIColor? {
+        set {
+            guard let uiColor = newValue else { return }
+            layer.borderColor = uiColor.cgColor
+        }
+        get {
+            guard let color = layer.borderColor else { return nil }
+            return UIColor(cgColor: color)
+        }
     }
 }
